@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PhishGuard - Advanced Phishing Detection System v2.0</title>
+    <title>PhishGuard - Phishing Detection System </title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="/static/logo.png">
     <style>
         /* Phase 2 Additional Styles */
         .version-badge {
@@ -338,12 +339,11 @@
     <nav class="navbar">
         <div class="logo">
             <i class="fas fa-shield-alt"></i> PhishGuard
-            <span class="version-badge">v2.0</span>
         </div>
         <ul class="nav-links">
-            <li><a href="#" class="active"><i class="fas fa-home"></i> Scanner</a></li>
-            <li><a href="#awareness"><i class="fas fa-graduation-cap"></i> Awareness</a></li>
-            <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+	<li><a href="/" class="active">Scanner</a></li>
+	<li><a href="/awareness">Awareness</a></li>
+	<li><a href="/about">About</a></li>
         </ul>
     </nav>
 
@@ -355,8 +355,7 @@
                 Advanced Phishing Detection System
             </h1>
             <p style="font-size: 1.2rem; opacity: 0.95; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-                AI-powered forensic analysis with screenshot capture, SSL verification, 
-                community intelligence, and real-time threat detection
+		Rule-based heuristic analysis with screenshot capture, SSL verification, and real-time threat detection
             </p>
             
             <div class="feature-pills">
@@ -412,10 +411,8 @@
         <div class="tabs-container">
             <button class="tab-button active" onclick="switchTab('scanner')">
                 <i class="fas fa-magnifying-glass"></i> URL Scanner
-            </button>
-            <button class="tab-button" onclick="switchTab('batch')">
-                <i class="fas fa-list-check"></i> Batch Analysis
-            </button>
+
+	</button>
             <button class="tab-button" onclick="switchTab('history')">
                 <i class="fas fa-history"></i> Scan History
             </button>

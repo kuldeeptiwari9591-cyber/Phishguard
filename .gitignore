@@ -1,3 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Environment
+.env
+apikey.env
+*.env
+.env.local
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Screenshots (optional - you may want to commit the directory structure)
+screenshots/*.png
+screenshots/*.jpg
+screenshots/*.jpeg
+
+# Keep the directory
+!screenshots/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+*.bak
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+temp/
+tmp/
+
 # ===== Python =====
 __pycache__/
 *.pyc
@@ -32,3 +96,42 @@ dist/
 
 # ===== Render / Cloud =====
 project.gcloudignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# Environment
+.env
+apikey.env
+*.env
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Screenshots
+screenshots/
+*.png
+*.jpg
+*.jpeg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

@@ -3,160 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PhishGuard – Phishing Awareness</title>
-
+    <title>PhishGuard - Security Awareness</title>
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="/static/logo.png">
 </head>
 <body>
 
-<nav class="navbar">
-    <div class="logo"><i class="fas fa-shield-alt"></i> PhishGuard</div>
-    <ul class="nav-links">
-        <li><a href="/">Scan Website</a></li>
-        <li><a href="/awareness" class="active">Awareness</a></li>
-        <li><a href="/about">About Project</a></li>
-    </ul>
-</nav>
-
-<div class="container">
-
-    <header class="hero-section small-hero">
-        <h1>Understand Phishing Before It Tricks You</h1>
-        <p>
-            Most phishing attacks succeed not because of technology,
-            but because of human trust, urgency, and confusion.
-            This page helps you recognize those traps.
-        </p>
-    </header>
-
-    <section class="features-card">
-        <h2><i class="fas fa-exclamation-triangle"></i> What Is Phishing?</h2>
-        <p>
-            Phishing is an attempt to trick you into revealing sensitive information
-            such as passwords, OTPs, banking details, or personal data.
-            Attackers pretend to be trusted organizations like banks, payment apps,
-            delivery companies, or government services.
-        </p>
-        <p style="margin-top:0.75rem;">
-            These attacks usually create <strong>urgency, fear, or excitement</strong>
-            so you act without verifying.
-        </p>
-    </section>
-
-    <h3 style="text-align:center; margin:2.5rem 0 1.5rem;">
-        Common Types of Phishing Attacks
-    </h3>
-
-    <div class="info-grid">
-
-        <div class="info-card">
-            <h4>Email Phishing</h4>
-            <p>
-                Fake emails pretending to be from banks, Google, PayPal, or companies.
-                They often claim your account is suspended or needs verification.
-            </p>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i> PhishGuard
         </div>
-
-        <div class="info-card">
-            <h4>Spear Phishing</h4>
-            <p>
-                Targeted attacks where the attacker already knows your name,
-                workplace, or role, making the message feel personal and legitimate.
-            </p>
-        </div>
-
-        <div class="info-card">
-            <h4>Smishing (SMS)</h4>
-            <p>
-                Fraudulent text messages such as “Your package is delayed”
-                or “Your bank account is blocked” with a short malicious link.
-            </p>
-        </div>
-
-        <div class="info-card">
-            <h4>Vishing (Phone Calls)</h4>
-            <p>
-                Calls pretending to be bank officials or tech support,
-                asking for OTPs or remote access to your device.
-            </p>
-        </div>
-
-        <div class="info-card">
-            <h4>Clone Phishing</h4>
-            <p>
-                A legitimate email you previously received is copied,
-                but the link or attachment is replaced with a malicious one.
-            </p>
-        </div>
-
-        <div class="info-card">
-            <h4>Fake Websites</h4>
-            <p>
-                Websites that look identical to real login pages
-                but are hosted on newly created or suspicious domains.
-            </p>
-        </div>
-
-    </div>
-
-    <section class="features-card" style="margin-top:2.5rem;">
-        <h2><i class="fas fa-shield-check"></i> How to Stay Safe</h2>
-        <ul style="margin-top:1rem;">
-            <li>Never enter passwords or OTPs from links in emails or messages</li>
-            <li>Check the website domain carefully before logging in</li>
-            <li>Be suspicious of urgency, threats, or unexpected rewards</li>
-            <li>Use official apps or manually type website addresses</li>
-            <li>Enable two-factor authentication wherever possible</li>
+        <ul class="nav-links">
+            <li><a href="/">Scanner</a></li>
+            <li><a href="/awareness" class="active">Awareness</a></li>
+            <li><a href="/about">About</a></li>
         </ul>
-    </section>
+    </nav>
 
-    <section class="features-card" style="margin-top:2rem;">
-        <h2><i class="fas fa-search"></i> How PhishGuard Helps</h2>
-        <p>
-            PhishGuard analyzes website identity, age, security signals,
-            and reputation to help you decide whether a website
-            may be risky before you interact with it.
-        </p>
-        <p style="margin-top:0.75rem;">
-            It does not guarantee safety — it helps you make an informed decision.
-        </p>
-    </section>
+    <div class="container">
+        <header class="hero-section small-hero">
+            <h1>Phishing Awareness Hub</h1>
+            <p>A comprehensive guide to understanding, detecting, and preventing cyber attacks.</p>
+        </header>
 
-</div>
-
-<footer class="main-footer">
-    <div class="footer-content">
-        <div class="footer-col">
-            <h3>PhishGuard</h3>
-            <p>
-                An educational phishing detection system designed to
-                promote safer browsing habits.
+        <section class="content-card" style="margin-bottom: 3rem;">
+            <h2><i class="fas fa-book-open"></i> Introduction to Phishing</h2>
+            <p class="intro-text" style="margin-top: 1rem; line-height: 1.8; color: #475569;">
+                Phishing is a cybercrime in which a target is contacted by email, telephone, or text message by someone posing as a legitimate institution to lure individuals into providing sensitive data such as personally identifiable information, banking and credit card details, and passwords.
+                The information is then used to access important accounts and can result in identity theft and financial loss.
             </p>
+        </section>
+
+        <h3 class="section-title" style="text-align:center; margin-bottom:2rem; font-size:1.8rem; color:#1e293b; font-weight: 700;">Types of Phishing Attacks</h3>
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="icon-box"><i class="fas fa-envelope-open-text"></i></div>
+                <h4>Email Phishing</h4>
+                <p>The most common form. Attackers send generic mass emails mimicking brands like PayPal, Netflix, or Google to steal credentials. They often use urgency ("Account Suspended") to panic the user.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="icon-box"><i class="fas fa-bullseye"></i></div>
+                <h4>Spear Phishing</h4>
+                <p>A highly targeted attack. Hackers research the victim beforehand (via LinkedIn or social media) to customize the email, making it very convincing. Used often against employees.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="icon-box"><i class="fas fa-whale"></i></div>
+                <h4>Whaling</h4>
+                <p>A specific form of spear phishing that targets high-profile executives ("whales") like CEOs or CFOs. The goal is often to steal sensitive company data or authorize large transfers.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="icon-box"><i class="fas fa-sms"></i></div>
+                <h4>Smishing (SMS)</h4>
+                <p>Phishing via text message. Usually urgent messages like "Your bank account is locked" or "Package delivery failed" with a malicious short-link.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
+                <h4>Vishing (Voice)</h4>
+                <p>Attackers call victims pretending to be IRS, Tech Support, or Bank officials. They use voice changers and social engineering to trick victims into revealing OTPs.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="icon-box"><i class="fas fa-clone"></i></div>
+                <h4>Clone Phishing</h4>
+                <p>Hackers intercept a legitimate email you previously received, clone it exactly, but replace the attachment or link with a malicious one, then resend it.</p>
+            </div>
         </div>
 
-        <div class="footer-col">
-            <h3>Quick Links</h3>
-            <ul class="footer-links">
-                <li><a href="/">Website Scanner</a></li>
-                <li><a href="/awareness">Phishing Awareness</a></li>
-                <li><a href="/about">About Project</a></li>
+        <section class="content-card tips-section" style="margin-top: 3rem;">
+            <h2><i class="fas fa-shield-virus"></i> Safety Best Practices</h2>
+            <ul class="tips-list" style="list-style:none; margin-top:1.5rem;">
+                <li style="margin-bottom:1.2rem; display:flex; gap:12px; align-items: start;"><i class="fas fa-check-circle" style="color:#10b981; font-size: 1.2rem; margin-top: 2px;"></i> <div><strong>Verify Before Clicking:</strong> Hover over links to see the actual URL destination.</div></li>
+                <li style="margin-bottom:1.2rem; display:flex; gap:12px; align-items: start;"><i class="fas fa-check-circle" style="color:#10b981; font-size: 1.2rem; margin-top: 2px;"></i> <div><strong>Enable 2FA (MFA):</strong> Even if a hacker steals your password, they can't login without your second code.</div></li>
+                <li style="margin-bottom:1.2rem; display:flex; gap:12px; align-items: start;"><i class="fas fa-check-circle" style="color:#10b981; font-size: 1.2rem; margin-top: 2px;"></i> <div><strong>Check the Sender:</strong> Click the sender name in emails to reveal the actual email address (e.g., support@amazon-security-alert.com is FAKE).</div></li>
+                <li style="margin-bottom:1.2rem; display:flex; gap:12px; align-items: start;"><i class="fas fa-check-circle" style="color:#10b981; font-size: 1.2rem; margin-top: 2px;"></i> <div><strong>Keep Software Updated:</strong> Ensure your browser and antivirus have the latest security patches to block known threats.</div></li>
+                <li style="margin-bottom:1.2rem; display:flex; gap:12px; align-items: start;"><i class="fas fa-check-circle" style="color:#10b981; font-size: 1.2rem; margin-top: 2px;"></i> <div><strong>Use Strong Passwords:</strong> Create unique passwords for each account with a combination of letters, numbers, and symbols.</div></li>
+                <li style="margin-bottom:1.2rem; display:flex; gap:12px; align-items: start;"><i class="fas fa-check-circle" style="color:#10b981; font-size: 1.2rem; margin-top: 2px;"></i> <div><strong>Be Suspicious of Urgency:</strong> Legitimate companies rarely demand immediate action via email.</div></li>
             </ul>
-        </div>
+        </section>
 
-        <div class="footer-col">
-            <h3>External Resources</h3>
-            <ul class="footer-links">
-                <li><a href="https://apwg.org/" target="_blank">APWG</a></li>
-                <li><a href="https://cybercrime.gov.in/" target="_blank">Cyber Crime India</a></li>
-            </ul>
-        </div>
+        <section class="content-card" style="margin-top: 3rem; background: #fef3c7; border-left: 4px solid #f59e0b;">
+            <h2 style="color: #92400e;"><i class="fas fa-exclamation-triangle"></i> Educational Disclaimer</h2>
+            <p style="color: #78350f; line-height: 1.8; margin-top: 1rem;">
+                PhishGuard is an academic project developed by <strong>Kuldeep Tiwari</strong> and <strong>Aman Tiwari</strong> 
+                as part of a college cybersecurity curriculum. This tool is designed for educational and research purposes only. 
+                While we strive for accuracy using rule-based heuristics and external threat intelligence, PhishGuard should not 
+                be considered a replacement for professional security solutions. Always verify suspicious links through official 
+                channels and consult IT security professionals for critical decisions.
+            </p>
+        </section>
     </div>
 
-    <div class="footer-bottom">
-        <p>© 2025 PhishGuard – For education and awareness only.</p>
-    </div>
-</footer>
-
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>PhishGuard Security</h3>
+                <p>An educational phishing detection platform developed as a college project, helping users identify malicious websites through heuristic analysis and threat intelligence.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="/"><i class="fas fa-home"></i> URL Scanner</a></li>
+                    <li><a href="/awareness"><i class="fas fa-graduation-cap"></i> Security Guide</a></li>
+                    <li><a href="/about"><i class="fas fa-info-circle"></i> About Project</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="https://whois.whoisxmlapi.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Whois Lookup</a></li>
+                    <li><a href="https://www.virustotal.com/" target="_blank"><i class="fas fa-external-link-alt"></i> VirusTotal</a></li>
+                    <li><a href="https://apwg.org/" target="_blank"><i class="fas fa-external-link-alt"></i> Anti-Phishing Working Group</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 PhishGuard - College Project by Kuldeep Tiwari & Aman Tiwari. Educational Use Only.</p>
+        </div>
+    </footer>
 </body>
 </html>

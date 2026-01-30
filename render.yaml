@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: phishguard
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: MONGO_URI
+        sync: false
+      - key: GOOGLE_SAFE_BROWSING_API_KEY
+        sync: false
+      - key: VIRUSTOTAL_API_KEY
+        sync: false
+      - key: WHOISXML_API_KEY
+        sync: false
+      - key: SCREENSHOT_API_KEY
+        sync: false
+      - key: PORT
+        value: 10000

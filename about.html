@@ -3,119 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PhishGuard – About Project</title>
-
+    <title>PhishGuard - About Project</title>
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="/static/logo.png">
 </head>
 <body>
 
-<nav class="navbar">
-    <div class="logo"><i class="fas fa-shield-alt"></i> PhishGuard</div>
-    <ul class="nav-links">
-        <li><a href="/">Scan Website</a></li>
-        <li><a href="/awareness">Awareness</a></li>
-        <li><a href="/about" class="active">About Project</a></li>
-    </ul>
-</nav>
-
-<div class="container">
-
-    <header class="hero-section small-hero">
-        <h1>About PhishGuard</h1>
-        <p>
-            A final-year project focused on phishing detection,
-            explainability, and user awareness.
-        </p>
-    </header>
-
-    <section class="features-card">
-        <h2><i class="fas fa-user"></i> Developer</h2>
-        <p>
-            <strong>Kuldeep Tiwari</strong><br>
-            B.Sc. Information Technology – Final Year
-        </p>
-        <p style="margin-top:0.75rem;">
-            This project was developed to demonstrate how rule-based
-            analysis and threat intelligence can help users identify
-            suspicious websites without relying on black-box machine learning.
-        </p>
-    </section>
-
-    <section class="features-card" style="margin-top:2rem;">
-        <h2><i class="fas fa-diagram-project"></i> System Architecture</h2>
-
-        <ul style="margin-top:1rem;">
-            <li><strong>Frontend:</strong> HTML, CSS, JavaScript for user interaction and explanations</li>
-            <li><strong>Backend:</strong> Python Flask for URL analysis and API handling</li>
-            <li><strong>Logic Engine:</strong> Rule-based phishing detection using domain, SSL, and reputation signals</li>
-            <li><strong>Database:</strong> MongoDB for scan history storage</li>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i> PhishGuard
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Scanner</a></li>
+            <li><a href="/awareness">Awareness</a></li>
+            <li><a href="/about" class="active">About</a></li>
         </ul>
-    </section>
+    </nav>
 
-    <section class="features-card" style="margin-top:2rem;">
-        <h2><i class="fas fa-cogs"></i> Detection Approach</h2>
-        <p>
-            PhishGuard uses an explainable, rule-based approach instead of machine learning.
-            Each verdict is derived from visible signals such as:
-        </p>
-        <ul style="margin-top:0.75rem;">
-            <li>Domain age and ownership</li>
-            <li>SSL certificate validity</li>
-            <li>Domain reputation and threat intelligence</li>
-            <li>Brand impersonation indicators</li>
-        </ul>
-    </section>
+    <div class="container">
+        <header class="hero-section small-hero">
+            <h1>About This Project</h1>
+            <p>Academic research project on phishing detection using rule-based analysis</p>
+        </header>
 
-    <section class="features-card" style="margin-top:2rem;">
-        <h2><i class="fas fa-balance-scale"></i> Ethical Disclaimer</h2>
-        <p>
-            This system does not guarantee website safety and should not be
-            used as the sole decision-making tool.
-            It is designed for educational and awareness purposes only.
-        </p>
-    </section>
-
-    <section class="features-card" style="margin-top:2rem; text-align:center;">
-        <h2><i class="fas fa-envelope"></i> Contact</h2>
-        <p>Email: <a href="mailto:kuldeeptiwari9592@gmail.com">kuldeeptiwari9592@gmail.com</a></p>
-    </section>
-
-</div>
-
-<footer class="main-footer">
-    <div class="footer-content">
-        <div class="footer-col">
-            <h3>PhishGuard</h3>
-            <p>
-                A phishing detection and awareness system
-                built as an academic project.
+        <section class="content-card" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-left: 4px solid #2563eb; margin-bottom: 2rem;">
+            <h2 style="color: #1e40af;"><i class="fas fa-graduation-cap"></i> Academic Project Notice</h2>
+            <p style="color: #1e3a8a; line-height: 1.8; margin-top: 1rem; font-size: 1.05rem;">
+                <strong>PhishGuard</strong> is a college cybersecurity project developed by <strong>Kuldeep Tiwari</strong> 
+                and <strong>Aman Tiwari</strong> as part of their academic curriculum. This platform demonstrates the 
+                practical application of heuristic detection algorithms and threat intelligence APIs for identifying 
+                phishing websites. It is intended for educational and research purposes only.
             </p>
+        </section>
+
+        <h3 style="text-align: center; font-size: 1.8rem; color: #1e293b; margin-bottom: 2rem; font-weight: 700;">
+            <i class="fas fa-users"></i> Project Team
+        </h3>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+            <section class="profile-card">
+                <div class="profile-header" style="text-align: center;">
+                    <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
+                    <div class="profile-info">
+                        <h2>Kuldeep Tiwari</h2>
+                        <p class="role" style="color: #2563eb; font-weight: 600; margin: 0.5rem 0;">Lead Developer</p>
+                        <p class="bio" style="text-align: left; margin-top: 1rem;">
+                            Lead developer responsible for system architecture, backend logic, API integration, 
+                            and heuristic detection algorithms. Focused on creating a scalable and efficient 
+                            phishing detection system using Flask and MongoDB.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="profile-card">
+                <div class="profile-header" style="text-align: center;">
+                    <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
+                    <div class="profile-info">
+                        <h2>Aman Tiwari</h2>
+                        <p class="role" style="color: #2563eb; font-weight: 600; margin: 0.5rem 0;">Project Partner</p>
+                        <p class="bio" style="text-align: left; margin-top: 1rem;">
+                            Project partner contributing to frontend development, user interface design, 
+                            security awareness content, and testing. Collaborated on research and documentation 
+                            for the detection methodology and best practices.
+                        </p>
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <div class="footer-col">
-            <h3>Quick Links</h3>
-            <ul class="footer-links">
-                <li><a href="/">Website Scanner</a></li>
-                <li><a href="/awareness">Awareness</a></li>
-                <li><a href="/about">About Project</a></li>
-            </ul>
-        </div>
+        <section class="project-info" style="margin-top: 2rem;">
+            <h2><i class="fas fa-server"></i> System Architecture</h2>
+            <p>PhishGuard uses a rule-based detection system analyzing multiple threat indicators.</p>
+            
+            <div style="margin-top: 1.5rem;">
+                <h3 style="color:#2563eb; margin-bottom:0.5rem; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-layer-group"></i> Frontend Interface
+                </h3>
+                <p style="margin-bottom:1.5rem; line-height: 1.7;">Built with HTML5, CSS3, and JavaScript, providing a responsive and intuitive user experience across mobile and desktop devices.</p>
+                
+                <h3 style="color:#2563eb; margin-bottom:0.5rem; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-code"></i> Backend Logic
+                </h3>
+                <p style="margin-bottom:1.5rem; line-height: 1.7;">Powered by Python (Flask), implementing 16+ heuristic detection rules including typosquatting detection, domain age verification, SSL certificate analysis, and behavioral pattern recognition.</p>
+                
+                <h3 style="color:#2563eb; margin-bottom:0.5rem; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-database"></i> Database Layer
+                </h3>
+                <p style="margin-bottom:1.5rem; line-height: 1.7;">MongoDB Atlas for persistent storage of scan history, domain reputation tracking, and community reports, ensuring data availability and security.</p>
+                
+                <h3 style="color:#2563eb; margin-bottom:0.5rem; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-brain"></i> Detection Engine
+                </h3>
+                <p style="margin-bottom:1.5rem; line-height: 1.7;">Integrates Google Safe Browsing API, VirusTotal API, and WhoisXML API to fetch real-time threat intelligence on domains, SSL certificates, and security reputation.</p>
+            </div>
+        </section>
 
-        <div class="footer-col">
-            <h3>Credits</h3>
-            <ul class="footer-links">
-                <li>WhoisXML API</li>
-                <li>Flask</li>
-                <li>MongoDB</li>
+        <section class="content-card" style="margin-top: 2rem; background: #fef2f2; border-left: 4px solid #dc2626;">
+            <h2 style="color: #991b1b;"><i class="fas fa-exclamation-triangle"></i> Important Disclaimer</h2>
+            <div style="color: #7f1d1d; line-height: 1.8; margin-top: 1rem;">
+                <p style="margin-bottom: 1rem; font-weight: 600;">This is an Educational Project - Not a Commercial Security Product</p>
+                
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="margin-bottom: 0.75rem; display: flex; gap: 10px;">
+                        <i class="fas fa-circle" style="font-size: 0.5rem; margin-top: 8px; color: #dc2626;"></i>
+                        <span><strong>Academic Purpose:</strong> PhishGuard was created as a college project to demonstrate cybersecurity concepts and is not intended for commercial use.</span>
+                    </li>
+                    <li style="margin-bottom: 0.75rem; display: flex; gap: 10px;">
+                        <i class="fas fa-circle" style="font-size: 0.5rem; margin-top: 8px; color: #dc2626;"></i>
+                        <span><strong>Rule-Based Detection:</strong> This system uses heuristic analysis and may produce false positives or miss sophisticated attacks.</span>
+                    </li>
+                    <li style="margin-bottom: 0.75rem; display: flex; gap: 10px;">
+                        <i class="fas fa-circle" style="font-size: 0.5rem; margin-top: 8px; color: #dc2626;"></i>
+                        <span><strong>No Liability:</strong> The developers assume no liability for any damages or security incidents. Always verify suspicious links independently.</span>
+                    </li>
+                    <li style="margin-bottom: 0.75rem; display: flex; gap: 10px;">
+                        <i class="fas fa-circle" style="font-size: 0.5rem; margin-top: 8px; color: #dc2626;"></i>
+                        <span><strong>Consult Professionals:</strong> For critical security decisions, always consult professional cybersecurity services and IT experts.</span>
+                    </li>
+                    <li style="margin-bottom: 0.75rem; display: flex; gap: 10px;">
+                        <i class="fas fa-circle" style="font-size: 0.5rem; margin-top: 8px; color: #dc2626;"></i>
+                        <span><strong>External APIs:</strong> This tool relies on third-party APIs which may have their own limitations and terms of service.</span>
+                    </li>
+                </ul>
+
+                <p style="margin-top: 1.5rem; padding: 1rem; background: white; border-radius: 8px; font-style: italic;">
+                    By using PhishGuard, you acknowledge that this is a learning project and agree to use it responsibly 
+                    for educational purposes only. The creators are students and this project is part of their academic coursework.
+                </p>
+            </div>
+        </section>
+
+        <section class="content-card contact-section" style="margin-top: 2rem; text-align: center;">
+            <h2><i class="fas fa-address-book"></i> Contact Information</h2>
+            <p style="color: #64748b; margin: 1rem 0;">Connect with the project team</p>
+            <div class="contact-links" style="margin-top: 1.5rem;">
+                <a href="mailto:kuldeeptiwari9592@gmail.com" class="contact-btn email">
+                    <i class="fas fa-envelope"></i> Email Kuldeep
+                </a>
+                <a href="https://github.com/kuldeeptiwari" target="_blank" class="contact-btn github">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://linkedin.com/in/kuldeeptiwari" target="_blank" class="contact-btn linkedin">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+        </section>
+
+        <section class="acknowledgments" style="margin-top: 3rem; text-align: center;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #1e293b;">
+                <i class="fas fa-heart" style="color: #dc2626;"></i> Acknowledgments
+            </h3>
+            <p style="color: #64748b; margin-bottom: 1.5rem;">This project was made possible by the following tools and resources:</p>
+            <ul class="credits-list" style="list-style:none; margin-top:1rem; display:flex; flex-wrap:wrap; justify-content:center; gap:12px;">
+                <li style="background:#eff6ff; padding:0.75rem 1.5rem; border-radius:25px; color: #1e40af; font-weight: 600; border: 2px solid #bfdbfe;">
+                    <i class="fas fa-shield-alt"></i> Google Safe Browsing
+                </li>
+                <li style="background:#eff6ff; padding:0.75rem 1.5rem; border-radius:25px; color: #1e40af; font-weight: 600; border: 2px solid #bfdbfe;">
+                    <i class="fas fa-virus"></i> VirusTotal
+                </li>
+                <li style="background:#eff6ff; padding:0.75rem 1.5rem; border-radius:25px; color: #1e40af; font-weight: 600; border: 2px solid #bfdbfe;">
+                    <i class="fas fa-search"></i> WhoisXML API
+                </li>
+                <li style="background:#eff6ff; padding:0.75rem 1.5rem; border-radius:25px; color: #1e40af; font-weight: 600; border: 2px solid #bfdbfe;">
+                    <i class="fab fa-python"></i> Python Flask
+                </li>
+                <li style="background:#eff6ff; padding:0.75rem 1.5rem; border-radius:25px; color: #1e40af; font-weight: 600; border: 2px solid #bfdbfe;">
+                    <i class="fas fa-database"></i> MongoDB
+                </li>
+                <li style="background:#eff6ff; padding:0.75rem 1.5rem; border-radius:25px; color: #1e40af; font-weight: 600; border: 2px solid #bfdbfe;">
+                    <i class="fab fa-font-awesome"></i> Font Awesome
+                </li>
             </ul>
-        </div>
+        </section>
     </div>
 
-    <div class="footer-bottom">
-        <p>© 2025 PhishGuard – Academic Project</p>
-    </div>
-</footer>
-
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>PhishGuard Security</h3>
+                <p>An educational phishing detection platform developed as a college project, helping users identify malicious websites through heuristic analysis and threat intelligence.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="/"><i class="fas fa-home"></i> URL Scanner</a></li>
+                    <li><a href="/awareness"><i class="fas fa-graduation-cap"></i> Security Guide</a></li>
+                    <li><a href="/about"><i class="fas fa-info-circle"></i> About Project</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="https://whois.whoisxmlapi.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Whois Lookup</a></li>
+                    <li><a href="https://www.virustotal.com/" target="_blank"><i class="fas fa-external-link-alt"></i> VirusTotal</a></li>
+                    <li><a href="https://apwg.org/" target="_blank"><i class="fas fa-external-link-alt"></i> Anti-Phishing Working Group</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 PhishGuard - College Project by Kuldeep Tiwari & Aman Tiwari. Educational Use Only.</p>
+        </div>
+    </footer>
 </body>
 </html>
