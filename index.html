@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishGuard - Advanced Phishing Detection System v2.0</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Phase 2 Additional Styles */
+        .version-badge {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        .stats-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: -50px auto 3rem auto;
+            max-width: 1200px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(37,99,235,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(37,99,235,0.4);
+        }
+
+        .stat-card.danger {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            box-shadow: 0 8px 20px rgba(220,38,38,0.3);
+        }
+
+        .stat-card.warning {
+            background: linear-gradient(135deg, #d97706 0%, #92400e 100%);
+            box-shadow: 0 8px 20px rgba(217,119,6,0.3);
+        }
+
+        .stat-card.success {
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+            box-shadow: 0 8px 20px rgba(22,163,74,0.3);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-subtitle {
+            font-size: 0.75rem;
+            opacity: 0.85;
+        }
+
+        .tabs-container {
+            display: flex;
+            gap: 0;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e2e8f0;
+            overflow-x: auto;
+        }
+
+        .tab-button {
+            padding: 14px 28px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: #64748b;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+
+        .tab-button:hover {
+            color: #2563eb;
+            background: #f8fafc;
+        }
+
+        .tab-button.active {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+            background: #eff6ff;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .batch-section {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .batch-section:focus-within {
+            border-color: #2563eb;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+
+        .batch-textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            resize: vertical;
+            transition: border-color 0.2s ease;
+        }
+
+        .batch-textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 20px 14px 50px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+
+        .feature-pills {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .feature-pill {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .feature-pill:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .quick-action-btn {
+            padding: 8px 16px;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            color: #475569;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quick-action-btn:hover {
+            background: #e2e8f0;
+            border-color: #cbd5e1;
+            transform: translateY(-1px);
+        }
+
+        .history-filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            color: #64748b;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+        }
+
+        .filter-btn.active {
+            background: #2563eb;
+            border-color: #2563eb;
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #94a3b8;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            background-color: #1e293b;
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            padding: 8px 12px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .stats-dashboard {
+                grid-template-columns: 1fr;
+                margin-top: 0;
+            }
+
+            .tabs-container {
+                gap: 0;
+            }
+
+            .tab-button {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i> PhishGuard
+            <span class="version-badge">v2.0</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active"><i class="fas fa-home"></i> Scanner</a></li>
+            <li><a href="#awareness"><i class="fas fa-graduation-cap"></i> Awareness</a></li>
+            <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section" style="background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%); color: white; padding: 4rem 2rem; text-align: center;">
+        <div class="container">
+            <h1 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <i class="fas fa-shield-virus"></i>
+                Advanced Phishing Detection System
+            </h1>
+            <p style="font-size: 1.2rem; opacity: 0.95; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                AI-powered forensic analysis with screenshot capture, SSL verification, 
+                community intelligence, and real-time threat detection
+            </p>
+            
+            <div class="feature-pills">
+                <span class="feature-pill">
+                    <i class="fas fa-camera"></i> Screenshot Analysis
+                </span>
+                <span class="feature-pill">
+                    <i class="fas fa-certificate"></i> SSL Deep Scan
+                </span>
+                <span class="feature-pill">
+                    <i class="fas fa-users"></i> Community Reports
+                </span>
+                <span class="feature-pill">
+                    <i class="fas fa-brain"></i> 16+ Detection Rules
+                </span>
+                <span class="feature-pill">
+                    <i class="fas fa-database"></i> Historical Analysis
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Statistics Dashboard -->
+    <div class="stats-dashboard">
+        <div class="stat-card">
+            <div class="stat-label"><i class="fas fa-chart-line"></i> Total Scans</div>
+            <div class="stat-value" id="totalScans">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+            <div class="stat-subtitle">All-time analyses</div>
+        </div>
+        <div class="stat-card danger">
+            <div class="stat-label"><i class="fas fa-exclamation-triangle"></i> High Risk</div>
+            <div class="stat-value" id="highRiskCount">--</div>
+            <div class="stat-subtitle" id="highRiskPercent">--% of total</div>
+        </div>
+        <div class="stat-card warning">
+            <div class="stat-label"><i class="fas fa-shield-alt"></i> Suspicious</div>
+            <div class="stat-value" id="suspiciousCount">--</div>
+            <div class="stat-subtitle">Flagged for review</div>
+        </div>
+        <div class="stat-card success">
+            <div class="stat-label"><i class="fas fa-calendar-day"></i> Today</div>
+            <div class="stat-value" id="todayScans">--</div>
+            <div class="stat-subtitle">Scans performed</div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Tabs Navigation -->
+        <div class="tabs-container">
+            <button class="tab-button active" onclick="switchTab('scanner')">
+                <i class="fas fa-magnifying-glass"></i> URL Scanner
+            </button>
+            <button class="tab-button" onclick="switchTab('batch')">
+                <i class="fas fa-list-check"></i> Batch Analysis
+            </button>
+            <button class="tab-button" onclick="switchTab('history')">
+                <i class="fas fa-history"></i> Scan History
+            </button>
+        </div>
+
+        <!-- Tab 1: URL Scanner -->
+        <div id="scanner-tab" class="tab-content active">
+            <div class="search-box" style="margin-bottom: 2rem; padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 style="margin: 0; color: #1e293b; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-search"></i> Analyze URL
+                    </h3>
+                    <div class="tooltip">
+                        <i class="fas fa-question-circle" style="color: #64748b; font-size: 1.2rem;"></i>
+                        <span class="tooltiptext">Enter any URL to check for phishing indicators</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px; align-items: stretch; flex-wrap: wrap;">
+                    <input 
+                        type="text" 
+                        id="urlInput" 
+                        placeholder="Paste suspicious link here (e.g., https://example.com)..." 
+                        style="flex: 1; min-width: 250px; padding: 14px 18px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 1rem; transition: all 0.2s;"
+                        onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37,99,235,0.1)'"
+                        onblur="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none'"
+                    >
+                    <button class="icon-btn" onclick="clearInput()" title="Clear input" style="padding: 14px 18px;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <button class="icon-btn" onclick="pasteFromClipboard()" title="Paste from clipboard" style="padding: 14px 18px;">
+                        <i class="fas fa-paste"></i>
+                    </button>
+                    <button class="primary-btn" onclick="analyzeURL()" style="padding: 14px 28px; font-weight: 600;">
+                        <i class="fas fa-shield-alt"></i> Scan Now
+                    </button>
+                </div>
+
+                <div class="quick-actions">
+                    <button class="quick-action-btn" onclick="document.getElementById('urlInput').value='https://paypal-secure-login.com'; analyzeURL();">
+                        <i class="fas fa-flask"></i> Try Demo (Suspicious)
+                    </button>
+                    <button class="quick-action-btn" onclick="document.getElementById('urlInput').value='https://google.com'; analyzeURL();">
+                        <i class="fas fa-check"></i> Try Demo (Safe)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingOverlay" class="hidden" style="text-align: center; margin: 3rem 0; padding: 3rem; background: #f8fafc; border-radius: 12px;">
+                <i class="fas fa-spinner fa-spin" style="font-size: 3.5rem; color: #2563eb; margin-bottom: 1rem;"></i>
+                <h3 style="color: #1e293b; margin-bottom: 0.5rem;">Running Forensic Analysis...</h3>
+                <p style="color: #64748b;">Checking URL, SSL certificate, domain reputation, and more</p>
+            </div>
+
+            <!-- Results Container -->
+            <div id="urlResults" class="hidden"></div>
+        </div>
+
+        <!-- Tab 2: Batch Analysis -->
+        <div id="batch-tab" class="tab-content">
+            <div class="batch-section">
+                <h3 style="color: #1e293b; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-list-check"></i> Batch URL Analysis
+                    <span style="font-size: 0.8rem; color: #64748b; font-weight: normal;">(Max 10 URLs)</span>
+                </h3>
+                <p style="color: #64748b; margin-bottom: 1.5rem;">
+                    Analyze multiple URLs at once. Enter one URL per line.
+                </p>
+                
+                <textarea 
+                    id="batchUrlInput" 
+                    class="batch-textarea"
+                    placeholder="Enter URLs, one per line:&#10;https://example1.com&#10;https://example2.com&#10;https://example3.com"
+                ></textarea>
+
+                <div style="display: flex; gap: 10px; margin-top: 1rem;">
+                    <button class="primary-btn" id="analyzeBatchBtn" style="flex: 1;">
+                        <i class="fas fa-rocket"></i> Analyze Batch
+                    </button>
+                    <button class="icon-btn" onclick="document.getElementById('batchUrlInput').value=''" style="padding: 14px 20px;">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Batch Results -->
+            <div id="batchResults" class="hidden"></div>
+        </div>
+
+        <!-- Tab 3: Scan History -->
+        <div id="history-tab" class="tab-content">
+            <section class="history-section">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                    <h3 style="margin: 0; color: #1e293b; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-history"></i> Scan History
+                    </h3>
+                    <div class="search-container" style="flex: 1; max-width: 400px; margin: 0;">
+                        <i class="fas fa-search search-icon"></i>
+                        <input 
+                            type="text" 
+                            id="historySearch" 
+                            class="search-input" 
+                            placeholder="Search by URL or domain..."
+                            onkeyup="if(event.key==='Enter') searchHistory()"
+                        >
+                    </div>
+                </div>
+
+                <div class="history-filters">
+                    <button class="filter-btn active" onclick="filterHistory('all')">
+                        <i class="fas fa-globe"></i> All
+                    </button>
+                    <button class="filter-btn" onclick="filterHistory('HIGH')">
+                        <i class="fas fa-ban"></i> High Risk
+                    </button>
+                    <button class="filter-btn" onclick="filterHistory('SUSPICIOUS')">
+                        <i class="fas fa-exclamation-triangle"></i> Suspicious
+                    </button>
+                    <button class="filter-btn" onclick="filterHistory('LOW')">
+                        <i class="fas fa-check-circle"></i> Safe
+                    </button>
+                </div>
+
+                <div class="table-wrapper">
+                    <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <thead>
+                            <tr style="background: #f8fafc; text-align: left; color: #475569; border-bottom: 2px solid #e2e8f0;">
+                                <th style="padding: 1rem; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;">
+                                    <i class="fas fa-calendar"></i> Date
+                                </th>
+                                <th style="padding: 1rem; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;">
+                                    <i class="fas fa-link"></i> Target URL
+                                </th>
+                                <th style="padding: 1rem; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;">
+                                    <i class="fas fa-shield-alt"></i> Risk Level
+                                </th>
+                                <th style="padding: 1rem; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;">
+                                    <i class="fas fa-chart-bar"></i> Score
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                    <div id="noHistoryMessage" class="empty-state" style="display: none;">
+                        <i class="fas fa-inbox"></i>
+                        <h3 style="color: #64748b; margin-top: 1rem;">No scan history yet</h3>
+                        <p>Start analyzing URLs to build your scan history</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- How It Works Section -->
+        <section class="project-info" id="awareness" style="margin-top: 4rem; padding: 3rem; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 16px;">
+            <h2 style="text-align: center; color: #1e293b; margin-bottom: 2rem; font-size: 2rem;">
+                <i class="fas fa-cogs"></i> How PhishGuard Works
+            </h2>
+            <p style="text-align: center; color: #64748b; max-width: 800px; margin: 0 auto 3rem auto; font-size: 1.1rem;">
+                PhishGuard closes the gap between basic blockers and professional forensics.
+                We analyze the "DNA" of a website—its age, owner, certificate, and behavioral patterns—to spot fakes that look real.
+            </p>
+
+            <div class="info-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; text-align: left;">
+                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fas fa-exclamation-triangle" style="color: white; font-size: 1.5rem;"></i>
+                    </div>
+                    <h4 style="color: #1e293b; margin-bottom: 0.75rem; font-size: 1.2rem;">The Problem</h4>
+                    <p style="font-size: 0.95rem; color: #64748b; line-height: 1.7;">
+                        Hackers create thousands of "burner domains" daily. They look like Netflix, PayPal, or your bank but are less than 24 hours old with hidden ownership.
+                    </p>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fas fa-shield-alt" style="color: white; font-size: 1.5rem;"></i>
+                    </div>
+                    <h4 style="color: #1e293b; margin-bottom: 0.75rem; font-size: 1.2rem;">Our Solution</h4>
+                    <p style="font-size: 0.95rem; color: #64748b; line-height: 1.7;">
+                        We check global registries in real-time. If a "Bank" site was created yesterday by an anonymous owner, we flag it instantly with forensic evidence.
+                    </p>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                        <i class="fas fa-users" style="color: white; font-size: 1.5rem;"></i>
+                    </div>
+                    <h4 style="color: #1e293b; margin-bottom: 0.75rem; font-size: 1.2rem;">Community Power</h4>
+                    <p style="font-size: 0.95rem; color: #64748b; line-height: 1.7;">
+                        User reports are aggregated to build a community-driven threat intelligence network, making detection faster and more accurate.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <div id="quizContainer" class="quiz-section" style="margin-top: 3rem; background: white; padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                <h3 style="margin: 0; color: #1e293b; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-graduation-cap"></i> Phishing Awareness Quiz
+                </h3>
+                <span style="font-size: 1.1rem; font-weight: bold; color: #2563eb; padding: 8px 16px; background: #eff6ff; border-radius: 20px;">
+                    Score: <span id="quizScore">0</span>%
+                </span>
+            </div>
+
+            <div style="background: #e2e8f0; height: 10px; border-radius: 5px; margin-bottom: 2rem; overflow: hidden;">
+                <div id="progressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%); border-radius: 5px; transition: width 0.4s ease;"></div>
+            </div>
+
+            <h4 id="questionText" style="font-size: 1.3rem; margin-bottom: 1.5rem; color: #1e293b; line-height: 1.5;">Question loading...</h4>
+            <div id="optionsContainer" style="display: flex; flex-direction: column; gap: 12px;"></div>
+            
+            <button id="nextBtn" class="primary-btn" onclick="nextQuestion()" disabled style="width: 100%; margin-top: 1.5rem; padding: 16px; font-size: 1.1rem; font-weight: 600;">
+                Next Question <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <!-- Quiz Results -->
+        <div id="quizResults" class="hidden quiz-section" style="text-align: center; padding: 4rem 2rem; margin-top: 3rem; background: white; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
+            <i class="fas fa-trophy" style="font-size: 5rem; color: #ca8a04; margin-bottom: 1.5rem; animation: bounce 1s;"></i>
+            <h2 style="margin-bottom: 1rem; color: #1e293b; font-size: 2rem;">Assessment Complete!</h2>
+            <p id="scoreMessage" style="color: #64748b; font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;"></p>
+            <h1 style="font-size: 4rem; font-weight: 800; color: #2563eb; margin-bottom: 2rem;">
+                <span id="scoreDisplay">0%</span>
+            </h1>
+            <button class="primary-btn" onclick="restartQuiz()" style="padding: 16px 32px; font-size: 1.1rem;">
+                <i class="fas fa-redo"></i> Retake Quiz
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="about" style="margin-top: 5rem; background: #1e293b; color: white; padding: 3rem 0;">
+        <div class="container">
+            <div class="footer-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div class="footer-col">
+                    <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-shield-alt"></i> PhishGuard Security
+                    </h3>
+                    <p style="color: #94a3b8; line-height: 1.7;">
+                        An advanced open-source phishing detection platform helping users identify and avoid malicious websites through real-time forensic analysis and community intelligence.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h3 style="margin-bottom: 1rem;">Quick Links</h3>
+                    <ul class="footer-links" style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: #94a3b8; text-decoration: none;"><i class="fas fa-chevron-right"></i> URL Scanner</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#awareness" style="color: #94a3b8; text-decoration: none;"><i class="fas fa-chevron-right"></i> Security Guide</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#about" style="color: #94a3b8; text-decoration: none;"><i class="fas fa-chevron-right"></i> Developer Info</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 style="margin-bottom: 1rem;">Resources</h3>
+                    <ul class="footer-links" style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://whois.whoisxmlapi.com/" target="_blank" style="color: #94a3b8; text-decoration: none;"><i class="fas fa-external-link-alt"></i> Whois Lookup</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.virustotal.com/" target="_blank" style="color: #94a3b8; text-decoration: none;"><i class="fas fa-external-link-alt"></i> VirusTotal</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://apwg.org/" target="_blank" style="color: #94a3b8; text-decoration: none;"><i class="fas fa-external-link-alt"></i> Anti-Phishing Working Group</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom" style="padding-top: 2rem; border-top: 1px solid #334155; text-align: center; color: #94a3b8;">
+                <p>&copy; 2025 PhishGuard Security System v2.0. Developed with <i class="fas fa-heart" style="color: #dc2626;"></i> by Kuldeep Tiwari. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Tab switching function
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.closest('.tab-button').classList.add('active');
+        }
+
+        // Filter history function
+        function filterHistory(level) {
+            // Update button states
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Reload history with filter
+            if (level === 'all') {
+                loadHistory();
+            } else {
+                loadHistoryFiltered(level);
+            }
+        }
+
+        async function loadHistoryFiltered(riskLevel) {
+            try {
+                const response = await fetch(`/api/history?risk_level=${riskLevel}&limit=20`);
+                if (!response.ok) return;
+                
+                const history = await response.json();
+                const tbody = document.getElementById('historyTableBody');
+                const noMsg = document.getElementById('noHistoryMessage');
+                
+                if(!tbody) return;
+                tbody.innerHTML = '';
+                
+                if (!history || history.length === 0) { 
+                    if(noMsg) noMsg.style.display = 'block'; 
+                    return; 
+                }
+                
+                if(noMsg) noMsg.style.display = 'none';
+                
+                history.forEach(entry => {
+                    const row = document.createElement('tr');
+                    row.style.cursor = 'pointer';
+                    row.style.transition = 'background 0.2s';
+                    row.onmouseover = () => row.style.background = '#f8fafc';
+                    row.onmouseout = () => row.style.background = 'white';
+                    
+                    const theme = getTheme(entry.risk_level);
+                    const safeUrl = (entry.url || 'Unknown').substring(0, 40);
+                    
+                    row.innerHTML = `
+                        <td style="padding:1rem; border-bottom:1px solid #e2e8f0;">
+                            <div style="font-size:0.85rem; color:#64748b;">${entry.date}</div>
+                        </td>
+                        <td style="padding:1rem; border-bottom:1px solid #e2e8f0;">
+                            <div style="color:#2563eb; font-weight:500;">${safeUrl}...</div>
+                            <div style="font-size:0.8rem; color:#64748b; margin-top:0.25rem;">${entry.context || ''}</div>
+                        </td>
+                        <td style="padding:1rem; border-bottom:1px solid #e2e8f0;">
+                            <span style="background:${theme.bg}; color:${theme.color}; padding:4px 12px; border-radius:20px; font-size:0.85rem; font-weight:600; white-space:nowrap;">
+                                ${entry.risk_level}
+                            </span>
+                        </td>
+                        <td style="padding:1rem; border-bottom:1px solid #e2e8f0;">
+                            <div style="display:flex; align-items:center; gap:0.5rem;">
+                                <div style="flex:1; background:#f1f5f9; border-radius:10px; height:8px; overflow:hidden;">
+                                    <div style="background:${theme.color}; height:100%; width:${entry.risk_score}%; transition:width 0.3s;"></div>
+                                </div>
+                                <span style="font-weight:600; color:#1e293b; min-width:40px;">${entry.risk_score}</span>
+                            </div>
+                        </td>
+                    `;
+                    
+                    row.onclick = () => viewScanDetails(entry.id || entry.history_id);
+                    tbody.appendChild(row);
+                });
+            } catch(e) { 
+                console.error("History Filter Error", e); 
+            }
+        }
+
+        // Load stats on page load
+        async function loadStatisticsDisplay() {
+            try {
+                const response = await fetch('/api/stats');
+                if (!response.ok) return;
+                
+                const stats = await response.json();
+                
+                document.getElementById('totalScans').textContent = stats.total_scans || 0;
+                document.getElementById('highRiskCount').textContent = stats.by_risk_level?.HIGH || 0;
+                document.getElementById('highRiskPercent').textContent = `${stats.high_risk_percentage || 0}% of total`;
+                document.getElementById('suspiciousCount').textContent = stats.by_risk_level?.SUSPICIOUS || 0;
+                document.getElementById('todayScans').textContent = stats.today_scans || 0;
+                
+            } catch (error) {
+                console.error('Stats loading error:', error);
+            }
+        }
+
+        // Load stats when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStatisticsDisplay();
+        });
+    </script>
+</body>
+</html>

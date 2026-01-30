@@ -1,0 +1,34 @@
+# ===== Python =====
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# ===== Virtual Environment =====
+venv/
+env/
+.venv/
+
+# ===== Environment / Secrets =====
+apikey.env
+.env
+
+# ===== Database =====
+*.db
+*.sqlite3
+
+# ===== OS / Editor junk =====
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ===== Build / Cache =====
+build/
+dist/
+*.egg-info/
+.cache/
+
+# ===== Render / Cloud =====
+project.gcloudignore
