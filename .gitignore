@@ -1,137 +1,64 @@
-# Python
+# ===== Python =====
 __pycache__/
 *.py[cod]
-*$py.class
+*.pyo
+*.pyd
 *.so
 .Python
-env/
+*$py.class
+
+# ===== Virtual Environments =====
 venv/
+env/
+.venv/
 ENV/
+
+# ===== Build / Distribution =====
 build/
-develop-eggs/
 dist/
-downloads/
+sdist/
+develop-eggs/
 eggs/
 .eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
 wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+.cache/
 
-# Environment
+# ===== Environment / Secrets =====
 .env
+.env.*
 apikey.env
-*.env
-.env.local
 
-# Database
+# ===== Databases =====
 *.db
 *.sqlite
 *.sqlite3
 
-# Screenshots (optional - you may want to commit the directory structure)
-screenshots/*.png
-screenshots/*.jpg
-screenshots/*.jpeg
+# ===== Logs =====
+*.log
+logs/
 
-# Keep the directory
+# ===== Temporary Files =====
+temp/
+tmp/
+
+# ===== Screenshots =====
+screenshots/*
 !screenshots/.gitkeep
 
-# IDE
+# ===== IDE / Editor =====
 .vscode/
 .idea/
 *.swp
 *.swo
 *.sublime-*
 
-# OS
+# ===== OS =====
 .DS_Store
 Thumbs.db
 *.bak
 
-# Logs
-*.log
-logs/
-
-# Temporary files
-temp/
-tmp/
-
-# ===== Python =====
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.log
-
-# ===== Virtual Environment =====
-venv/
-env/
-.venv/
-
-# ===== Environment / Secrets =====
-apikey.env
-.env
-
-# ===== Database =====
-*.db
-*.sqlite3
-
-# ===== OS / Editor junk =====
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
-
-# ===== Build / Cache =====
-build/
-dist/
-*.egg-info/
-.cache/
-
-# ===== Render / Cloud =====
+# ===== Cloud / Platform =====
 project.gcloudignore
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-ENV/
-
-# Environment
-.env
-apikey.env
-*.env
-
-# Database
-*.db
-*.sqlite
-*.sqlite3
-
-# Screenshots
-screenshots/
-*.png
-*.jpg
-*.jpeg
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Logs
-*.log
